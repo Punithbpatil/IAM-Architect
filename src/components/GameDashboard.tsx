@@ -43,32 +43,33 @@ const GameDashboard: React.FC<GameDashboardProps> = ({
   const isLastLevel = state.currentLevel >= TOTAL_LEVELS;
 
   return (
-    <div className="h-screen flex flex-col bg-[#0a0a0f] text-white overflow-hidden">
+    <div className="h-[100dvh] flex flex-col bg-[#0a0a0f] text-white overflow-hidden">
       {/* Top Bar */}
-      <header className="flex items-center justify-between px-6 py-3 bg-[#0d1117] border-b border-gray-800/50">
-        <div className="flex items-center gap-4">
+      <header className="sticky top-0 z-20 shrink-0 flex items-center justify-between px-4 md:px-6 py-3 bg-[#0d1117] border-b border-gray-800/50 overflow-hidden">
+        <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
           <button
             onClick={() => dispatch({ type: 'GO_TO_TITLE' })}
-            className="text-gray-500 hover:text-[#00d4ff] transition-colors text-xs font-mono tracking-wider flex items-center gap-1.5"
+            className="text-gray-500 hover:text-[#00d4ff] transition-colors text-xs md:text-sm font-mono tracking-wider flex items-center gap-1 shrink-0"
           >
-            <span>←</span>
-            <span>Levels</span>
+            <span className="text-base md:text-sm">←</span>
+            <span className="hidden sm:inline">Levels</span>
           </button>
-          <div className="w-px h-5 bg-gray-800" />
-          <div>
-            <h1 className="text-sm font-bold text-white leading-tight">
-              {currentLevelDef.title}
+          <div className="w-px h-5 bg-gray-800 shrink-0" />
+          <div className="min-w-0 truncate flex-1">
+            <h1 className="text-xs md:text-sm font-bold text-white leading-tight truncate">
+              <span className="text-[#00ff41] mr-1 md:mr-2">Lvl {state.currentLevel}</span>
+              <span className="hidden sm:inline">| </span>{currentLevelDef.title}
             </h1>
-            <p className="text-[10px] text-gray-500 font-mono">{currentLevelDef.subtitle}</p>
+            <p className="text-[9px] md:text-[10px] text-gray-500 font-mono truncate hidden sm:block">{currentLevelDef.subtitle}</p>
           </div>
         </div>
 
         {/* Level Progress Dots */}
-        <div className="flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-1.5 shrink-0 ml-4">
           {Array.from({ length: TOTAL_LEVELS }, (_, i) => i + 1).map((lvl) => (
             <div
               key={lvl}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 state.completedLevels.includes(lvl)
                   ? 'bg-[#00ff41] shadow-[0_0_6px_rgba(0,255,65,0.5)]'
                   : lvl === state.currentLevel

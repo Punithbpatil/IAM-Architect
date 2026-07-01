@@ -110,40 +110,43 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
   const hardLevels = levels.filter(l => l.difficulty === 'Hard');
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] flex flex-col p-4 md:p-6 lg:overflow-hidden lg:h-screen">
-      {/* Title */}
-      <div className="text-center mb-6 mt-4 shrink-0">
-        <h1 className="text-3xl md:text-4xl font-black text-[#00ff41] tracking-[0.2em] md:tracking-[0.3em] mb-2 drop-shadow-[0_0_20px_rgba(0,255,65,0.3)]">
-          IAM ARCHITECT
-        </h1>
-        <p className="text-[#00d4ff]/60 font-mono text-xs md:text-sm tracking-widest uppercase">
-          Escape the Cloud
-        </p>
-      </div>
+    <div className="min-h-[100dvh] bg-[#0a0a0f] flex flex-col lg:overflow-hidden lg:h-[100dvh]">
+      {/* Sticky Header Section */}
+      <div className="sticky top-0 z-20 bg-[#0a0a0f]/95 backdrop-blur-md pt-4 pb-2 border-b border-gray-800/50 shadow-lg px-4 md:px-6 shrink-0">
+        {/* Title */}
+        <div className="text-center mb-4">
+          <h1 className="text-3xl md:text-4xl font-black text-[#00ff41] tracking-[0.2em] md:tracking-[0.3em] mb-2 drop-shadow-[0_0_20px_rgba(0,255,65,0.3)]">
+            IAM ARCHITECT
+          </h1>
+          <p className="text-[#00d4ff]/60 font-mono text-xs md:text-sm tracking-widest uppercase">
+            Escape the Cloud
+          </p>
+        </div>
 
-      {/* Tabs */}
-      <div className="flex justify-center gap-2 md:gap-4 mb-6 shrink-0 flex-wrap">
-        {(['Easy', 'Moderate', 'Hard'] as const).map((tab) => {
-          const isActive = activeTab === tab;
-          let colorClass = '';
-          if (tab === 'Easy') colorClass = isActive ? 'bg-[#22c55e]/20 text-[#22c55e] border-[#22c55e]/50' : 'text-[#22c55e]/50 border-transparent hover:border-[#22c55e]/30';
-          if (tab === 'Moderate') colorClass = isActive ? 'bg-[#eab308]/20 text-[#eab308] border-[#eab308]/50' : 'text-[#eab308]/50 border-transparent hover:border-[#eab308]/30';
-          if (tab === 'Hard') colorClass = isActive ? 'bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/50' : 'text-[#ef4444]/50 border-transparent hover:border-[#ef4444]/30';
+        {/* Tabs */}
+        <div className="flex justify-center gap-2 md:gap-4 flex-wrap">
+          {(['Easy', 'Moderate', 'Hard'] as const).map((tab) => {
+            const isActive = activeTab === tab;
+            let colorClass = '';
+            if (tab === 'Easy') colorClass = isActive ? 'bg-[#22c55e]/20 text-[#22c55e] border-[#22c55e]/50' : 'text-[#22c55e]/50 border-transparent hover:border-[#22c55e]/30';
+            if (tab === 'Moderate') colorClass = isActive ? 'bg-[#eab308]/20 text-[#eab308] border-[#eab308]/50' : 'text-[#eab308]/50 border-transparent hover:border-[#eab308]/30';
+            if (tab === 'Hard') colorClass = isActive ? 'bg-[#ef4444]/20 text-[#ef4444] border-[#ef4444]/50' : 'text-[#ef4444]/50 border-transparent hover:border-[#ef4444]/30';
 
-          return (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 md:px-6 py-2 border rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 ${colorClass}`}
-            >
-              {tab}
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 md:px-6 py-2 border rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 ${colorClass}`}
+              >
+                {tab}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Level Groups Area */}
-      <div className="flex-1 lg:overflow-y-auto lg:scrollbar-none flex flex-col min-h-0">
+      <div className="flex-1 lg:overflow-y-auto lg:scrollbar-none flex flex-col min-h-0 p-4 md:p-6 pt-6">
         {activeTab === 'Easy' && renderLevelGroup('Easy', easyLevels, 'text-[#22c55e]', 'from-[#22c55e]/30')}
         {activeTab === 'Moderate' && renderLevelGroup('Moderate', moderateLevels, 'text-[#eab308]', 'from-[#eab308]/30')}
         {activeTab === 'Hard' && renderLevelGroup('Hard', hardLevels, 'text-[#ef4444]', 'from-[#ef4444]/30')}

@@ -105,7 +105,7 @@ export const EASY_LEVELS: LevelDefinition[] = [
     // Evaluator for group-action is handled slightly differently in useGameState due to the UI button modifying state directly, but we can leave it as group-action for now.
   },
   {
-    id: 10,
+    id: 4,
     title: 'The Read-Only Analyst',
     subtitle: 'Data access without modification',
     difficulty: 'Easy',
@@ -142,7 +142,7 @@ export const EASY_LEVELS: LevelDefinition[] = [
     }
   },
   {
-    id: 11,
+    id: 5,
     title: 'The Publisher',
     subtitle: 'Sending alerts to the world',
     difficulty: 'Easy',
@@ -167,7 +167,7 @@ export const EASY_LEVELS: LevelDefinition[] = [
     solutionExplanation: `✅ **Solution: Publisher Granted**\n\nThe billing system can now broadcast alerts successfully.`,
   },
   {
-    id: 12,
+    id: 6,
     title: 'The Log Writer',
     subtitle: 'Leaving a paper trail',
     difficulty: 'Easy',
@@ -204,7 +204,7 @@ export const EASY_LEVELS: LevelDefinition[] = [
     }
   },
   {
-    id: 13,
+    id: 7,
     title: 'The Instance Operator',
     subtitle: 'Powering up and shutting down',
     difficulty: 'Easy',
@@ -243,7 +243,7 @@ export const EASY_LEVELS: LevelDefinition[] = [
     }
   },
   {
-    id: 14,
+    id: 8,
     title: 'The Parameter Reader',
     subtitle: 'Fetching configurations securely',
     difficulty: 'Easy',
