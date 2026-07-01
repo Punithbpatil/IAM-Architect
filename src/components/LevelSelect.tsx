@@ -12,7 +12,7 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
   onSelectLevel,
   levels,
 }) => {
-  const isUnlocked = (levelId: number) => {
+  const isUnlocked = (_levelId: number) => {
     return true; // All levels unlocked by default per user request
   };
 
@@ -110,19 +110,19 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
   const hardLevels = levels.filter(l => l.difficulty === 'Hard');
 
   return (
-    <div className="h-screen bg-[#0a0a0f] flex flex-col p-6 overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0f] flex flex-col p-4 md:p-6 lg:overflow-hidden lg:h-screen">
       {/* Title */}
       <div className="text-center mb-6 mt-4 shrink-0">
-        <h1 className="text-4xl font-black text-[#00ff41] tracking-[0.3em] mb-2 drop-shadow-[0_0_20px_rgba(0,255,65,0.3)]">
+        <h1 className="text-3xl md:text-4xl font-black text-[#00ff41] tracking-[0.2em] md:tracking-[0.3em] mb-2 drop-shadow-[0_0_20px_rgba(0,255,65,0.3)]">
           IAM ARCHITECT
         </h1>
-        <p className="text-[#00d4ff]/60 font-mono text-sm tracking-widest uppercase">
+        <p className="text-[#00d4ff]/60 font-mono text-xs md:text-sm tracking-widest uppercase">
           Escape the Cloud
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex justify-center gap-4 mb-6 shrink-0">
+      <div className="flex justify-center gap-2 md:gap-4 mb-6 shrink-0 flex-wrap">
         {(['Easy', 'Moderate', 'Hard'] as const).map((tab) => {
           const isActive = activeTab === tab;
           let colorClass = '';
@@ -134,7 +134,7 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2 border rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300 ${colorClass}`}
+              className={`px-4 md:px-6 py-2 border rounded-full font-bold uppercase tracking-wider text-xs md:text-sm transition-all duration-300 ${colorClass}`}
             >
               {tab}
             </button>
@@ -142,15 +142,15 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
         })}
       </div>
 
-      {/* Level Groups Area - Scrollable if absolutely necessary, but hidden overflow prevents page scroll */}
-      <div className="flex-1 overflow-y-auto scrollbar-none flex flex-col min-h-0">
+      {/* Level Groups Area */}
+      <div className="flex-1 lg:overflow-y-auto lg:scrollbar-none flex flex-col min-h-0">
         {activeTab === 'Easy' && renderLevelGroup('Easy', easyLevels, 'text-[#22c55e]', 'from-[#22c55e]/30')}
         {activeTab === 'Moderate' && renderLevelGroup('Moderate', moderateLevels, 'text-[#eab308]', 'from-[#eab308]/30')}
         {activeTab === 'Hard' && renderLevelGroup('Hard', hardLevels, 'text-[#ef4444]', 'from-[#ef4444]/30')}
       </div>
 
       {/* Progress Footer */}
-      <div className="mt-4 mb-2 flex justify-center items-center gap-2 shrink-0">
+      <div className="mt-4 mb-2 flex justify-center items-center gap-1 md:gap-2 shrink-0 flex-wrap px-2">
         {levels.map((level) => (
           <div
             key={level.id}

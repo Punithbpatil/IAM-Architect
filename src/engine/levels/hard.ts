@@ -241,7 +241,7 @@ export const HARD_LEVELS: LevelDefinition[] = [
     policyTarget: 'trust-policy',
     starterCode: JSON.stringify({ Version: '2012-10-17', Statement: [{ Effect: 'Allow', Principal: { AWS: 'arn:aws:iam::333333333333:root' }, Action: 'sts:AssumeRole', Condition: { StringEquals: { 'sts:ExternalId': '' } } }] }, null, 2),
     solutionExplanation: `✅ **Solution: ExternalId Enforced**\n\nThe role is now protected from the Confused Deputy vulnerability.`,
-    customEvaluator: (playerPolicy, context, architecture) => {
+    customEvaluator: (playerPolicy, _context, _architecture) => {
       try {
         const policyObj = typeof playerPolicy === 'string' ? JSON.parse(playerPolicy) : playerPolicy;
         const stmt = policyObj.Statement && policyObj.Statement[0];

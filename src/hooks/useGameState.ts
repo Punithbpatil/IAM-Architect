@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 import type { GameState, GameAction, EvaluationResult } from '../engine/types';
 import { LEVELS } from '../engine/levels/index';
-import { evaluatePolicy, evaluateTrustPolicy } from '../engine/evaluator';
+import { evaluatePolicy } from '../engine/evaluator';
 
 const initialState: GameState = {
   phase: 'level-select',

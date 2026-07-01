@@ -18,15 +18,15 @@ const LevelBriefing: React.FC<LevelBriefingProps> = ({ level, onCancel, onAccept
 
       {/* Card */}
       <div className="relative z-10 w-full max-w-2xl animate-[fadeIn_0.3s_ease-out]">
-        <div className="border border-[#00d4ff]/30 rounded-xl bg-[#0a0a0f]/95 backdrop-blur-md p-8 shadow-[0_0_40px_rgba(0,212,255,0.15)] max-h-[85vh] flex flex-col">
+        <div className="border border-[#00d4ff]/30 rounded-xl bg-[#0a0a0f]/95 backdrop-blur-md p-5 md:p-8 shadow-[0_0_40px_rgba(0,212,255,0.15)] max-h-[85vh] flex flex-col">
           {/* Level Number Badge */}
           <div className="flex items-center gap-3 mb-4 shrink-0">
-            <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#00d4ff]/10 border border-[#00d4ff]/30">
-              <span className="text-[#00d4ff] font-black text-lg">{level.id}</span>
+            <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#00d4ff]/10 border border-[#00d4ff]/30">
+              <span className="text-[#00d4ff] font-black text-base md:text-lg">{level.id}</span>
             </div>
             <div>
-              <h2 className="text-xl font-black text-white tracking-wide">{level.title}</h2>
-              <p className="text-[#00d4ff]/60 text-xs font-mono">{level.subtitle}</p>
+              <h2 className="text-lg md:text-xl font-black text-white tracking-wide">{level.title}</h2>
+              <p className="text-[#00d4ff]/60 text-[10px] md:text-xs font-mono">{level.subtitle}</p>
             </div>
           </div>
 

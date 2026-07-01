@@ -59,6 +59,7 @@ export type EvaluationStage =
   | 'ExplicitDeny'
   | 'SCPDeny'
   | 'PermissionsBoundaryDeny'
+  | 'ResourceDeny'
   | 'IdentityAllow'
   | 'ImplicitDeny'
   | 'TrustPolicyAllow'
@@ -104,7 +105,8 @@ export interface LevelArchitecture {
   userPolicies: IAMPolicy[];         // Inline policies on the user
   permissionsBoundary?: IAMPolicy;   // If set, acts as a ceiling
   scps?: IAMPolicy[];                // If set, acts as org ceiling
-  trustPolicy?: TrustPolicy;        // For cross-account levels
+  trustPolicy?: TrustPolicy;         // For cross-account levels
+  resourcePolicy?: any;              // Resource-based policy
   targetAction: string;
   targetResource: string;
   targetResourceName: string;        // Human-readable name, e.g., "S3 Bucket: mission-data"
@@ -117,6 +119,7 @@ export interface LevelArchitecture {
 export type PolicyTarget =
   | 'identity-policy'
   | 'trust-policy'
+  | 'resource-policy'
   | 'permissions-boundary'
   | 'scp'
   | 'group-action'

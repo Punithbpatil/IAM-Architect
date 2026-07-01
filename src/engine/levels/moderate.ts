@@ -175,9 +175,9 @@ export const MODERATE_LEVELS: LevelDefinition[] = [
       const httpsResult = evaluatePolicy(playerPolicy, httpsContext, architecture, undefined);
       
       if (httpResult.allowed) return { allowed: false, stage: 'IdentityAllow', message: 'Insecure Traffic Allowed!', details: 'Your policy failed to Deny the request when aws:SecureTransport was false.' };
-      if (!httpsResult.allowed) return { allowed: false, stage: 'IdentityDeny', message: 'HTTPS Blocked!', details: 'Your policy accidentally blocked secure HTTPS traffic as well! Make sure you only Deny when SecureTransport is false.' };
+      if (!httpsResult.allowed) return { allowed: false, stage: 'ExplicitDeny', message: 'HTTPS Blocked!', details: 'Your policy accidentally blocked secure HTTPS traffic as well! Make sure you only Deny when SecureTransport is false.' };
       
-      return { allowed: true, stage: 'IdentityDeny', message: 'Secure Transport Enforced!', details: 'You successfully blocked HTTP while allowing HTTPS.' };
+      return { allowed: true, stage: 'ExplicitDeny', message: 'Secure Transport Enforced!', details: 'You successfully blocked HTTP while allowing HTTPS.' };
     }
   },
   {
@@ -212,7 +212,7 @@ export const MODERATE_LEVELS: LevelDefinition[] = [
       const expiredResult = evaluatePolicy(playerPolicy, expiredContext, architecture, undefined);
       
       if (!validResult.allowed) return { ...validResult, message: 'Valid Access Denied', details: 'A request made in 2026 was blocked. Check your condition.' };
-      if (expiredContext.allowed || expiredResult.allowed) return { allowed: false, stage: 'IdentityAllow', message: 'Expired Access Allowed!', details: 'A request made in 2027 was permitted! Ensure you are using DateLessThan correctly.' };
+      if (expiredResult.allowed) return { allowed: false, stage: 'IdentityAllow', message: 'Expired Access Allowed!', details: 'A request made in 2027 was permitted! Ensure you are using DateLessThan correctly.' };
       
       return { allowed: true, stage: 'IdentityAllow', message: 'Time Protocol Active!', details: 'You successfully restricted access temporally.' };
     }

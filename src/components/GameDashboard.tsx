@@ -82,10 +82,10 @@ const GameDashboard: React.FC<GameDashboardProps> = ({
       </header>
 
       {/* Main Content — Split Panels */}
-      <main className="flex-1 flex min-h-0">
-        {/* Left: Architecture Panel */}
-        <div className="w-[45%] p-4 overflow-hidden flex flex-col border-r border-gray-800/30">
-          <div className="flex items-center gap-2 mb-3">
+      <main className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-y-auto lg:overflow-hidden">
+        {/* Top/Left: Architecture Panel */}
+        <div className="w-full lg:w-[45%] p-4 lg:overflow-hidden flex flex-col border-b lg:border-b-0 lg:border-r border-gray-800/30 shrink-0 lg:shrink min-h-[40vh] lg:min-h-0">
+          <div className="flex items-center gap-2 mb-3 shrink-0">
             <span className="text-[10px] uppercase tracking-widest text-gray-600 font-bold">
               Architecture
             </span>
@@ -99,9 +99,9 @@ const GameDashboard: React.FC<GameDashboardProps> = ({
           </div>
         </div>
 
-        {/* Right: Editor + Actions */}
-        <div className="flex-1 flex flex-col p-4 overflow-hidden">
-          <div className="flex items-center gap-2 mb-3">
+        {/* Bottom/Right: Editor + Actions */}
+        <div className="flex-1 flex flex-col p-4 overflow-hidden min-h-[60vh] lg:min-h-0">
+          <div className="flex items-center gap-2 mb-3 shrink-0">
             <span className="text-[10px] uppercase tracking-widest text-gray-600 font-bold">
               Policy Editor
             </span>
@@ -109,7 +109,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({
           </div>
 
           {/* Editor */}
-          <div className="flex-1 min-h-0">
+          <div className="flex-1 min-h-0 border border-gray-800 rounded-lg overflow-hidden">
             <TerminalEditor
               code={state.currentCode}
               onChange={handleCodeChange}

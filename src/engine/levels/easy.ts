@@ -58,10 +58,10 @@ export const EASY_LEVELS: LevelDefinition[] = [
     solutionExplanation: `✅ **Solution: Explicit Block**\n\nThe Explicit Deny correctly overrides their full RDS access for the specific delete operation.`,
     customEvaluator: (playerPolicy, context, architecture) => {
       const rawResult = evaluatePolicy(playerPolicy, context, architecture, undefined);
-      if (!rawResult.allowed && rawResult.stage === 'IdentityDeny') {
+      if (!rawResult.allowed && rawResult.stage === 'ExplicitDeny') {
         return {
           allowed: true,
-          stage: 'IdentityDeny',
+          stage: 'ExplicitDeny',
           message: 'Database Protected!',
           details: 'Your explicit Deny successfully overrode the user\'s full RDS access and blocked the deletion.',
         };
